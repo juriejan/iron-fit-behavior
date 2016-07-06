@@ -140,6 +140,14 @@ Use `noOverlap` to position the element around another element without overlappi
         value: false
       },
 
+      /**
+       * Set to true to prevent limiting the element size.
+       */
+      unlimitedSize: {
+        type: Boolean,
+        value: false
+      },
+
       /** @type {?Object} */
       _fitInfo: {
         type: Object
@@ -381,8 +389,11 @@ Use `noOverlap` to position the element around another element without overlappi
         }
       }
 
-      this.sizingTarget.style.maxWidth = (right - left) + 'px';
-      this.sizingTarget.style.maxHeight = (bottom - top) + 'px';
+      // Set the max size for the element
+      if (!this.unlimitedSize) {
+        this.sizingTarget.style.maxWidth = (right - left) + 'px';
+        this.sizingTarget.style.maxHeight = (bottom - top) + 'px';
+      }
 
       // Remove the offset caused by any stacking context.
       this.style.left = (left - rect.left) + 'px';

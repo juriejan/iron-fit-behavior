@@ -900,6 +900,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             assert.equal(rect.bottom, parentRect.top, 'bottom ok');
           });
 
+         });
+
+        suite('when unlimtedSize is enabled', function() {
+
+          test('max-width and max-height is not set on element', function() {
+            el.verticalAlign = 'top';
+            el.unlimitedSize = true;
+            el.refit();
+            var rect = el.getBoundingClientRect();
+            assert.equal(el.style.maxWidth, '');
+            assert.equal(el.style.maxHeight, '');
+          });
+
         });
 
       });
